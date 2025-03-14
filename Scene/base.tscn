@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://6nfck3esvvfr"]
+
+[ext_resource type="Texture2D" uid="uid://cpccg3aupw014" path="res://icon.svg" id="1_d3q2k"]
+[ext_resource type="Script" uid="uid://dpryxxq2vfefv" path="res://Scene/icon.gd" id="2_7lj54"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Camera2D2" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(102, 96)
+
+[node name="Icon" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(102, 96)
+texture = ExtResource("1_d3q2k")
+script = ExtResource("2_7lj54")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Icon"]
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport2" type="SubViewport" parent="SubViewportContainer2"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Icon" type="Sprite2D" parent="SubViewportContainer2/SubViewport2"]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(421, 228)
+texture = ExtResource("1_d3q2k")
