@@ -40,9 +40,12 @@ animations = [{
 [node name="Booster" type="Node2D"]
 script = ExtResource("1_ajkcg")
 location = 2
+modifier = 15.0
+statModifers = Dictionary[int, float]({
+0: 15.0
+})
 metadata/_custom_type_script = "uid://n0snr621jcxe"
 
 [node name="BoosterAnimation" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 6)
 sprite_frames = SubResource("SpriteFrames_ra7no")
-animation = &"boost"
