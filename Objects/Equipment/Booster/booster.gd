@@ -4,4 +4,10 @@ extends Equipment
 
 
 func equipmentAffect():
+	print_debug("Effect")
+
+func playAnimation():
 	booster_animation.play("boost")
+	
+func endAnimation():
+	booster_animation.play("default")

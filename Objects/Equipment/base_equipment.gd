@@ -17,3 +17,9 @@ enum placement{
 ## Does the effect of the equipment
 func equipmentAffect():
 	print_debug("Unmodified equipment Affect")
+	
+func playAnimation():
+	print_debug("Play not set")
+	
+func endAnimation():
+	print_debug("End not set")

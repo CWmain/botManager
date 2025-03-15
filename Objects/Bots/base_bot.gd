@@ -37,7 +37,9 @@ func _process(_delta: float) -> void:
 	rotation += hor*0.01
 	var ver: float = Input.get_axis("ui_up", "ui_down")
 	if ver:
-		curLegs.equipmentAffect()
+		curLegs.playAnimation()
+	else:
+		curLegs.endAnimation()
 	
 	var moveDirection: Vector2 = Vector2(0,ver).normalized().rotated(rotation)
 	position += moveDirection*totalMoveSpeed
@@ -50,11 +52,13 @@ func updateEquipment():
 		curHead.position = Vector2(0,-16)
 		add_child(curHead)
 		calculateTotalStats(curHead.statModifers)
+		
 	if e_body != null:
 		curBody = e_body.instantiate()
 		curBody.position = Vector2(0,0)
 		add_child(curBody)
 		calculateTotalStats(curBody.statModifers)
+		
 	if e_legs != null:
 		curLegs = e_legs.instantiate()
 		curLegs.position = Vector2(0,16)
