@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://brwbgql70uqor"]
+
+[ext_resource type="Script" uid="uid://ceehun4qjrgyo" path="res://Objects/Equipment/Booster/booster.gd" id="1_ajkcg"]
+[ext_resource type="Texture2D" uid="uid://bky5dqkanmdb4" path="res://Objects/Equipment/Booster/Booster.png" id="1_hxo42"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajkcg"]
+atlas = ExtResource("1_hxo42")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywew7"]
+atlas = ExtResource("1_hxo42")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jyyi"]
+atlas = ExtResource("1_hxo42")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ra7no"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajkcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywew7")
+}],
+"loop": true,
+"name": &"boost",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jyyi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Booster" type="Node2D"]
+script = ExtResource("1_ajkcg")
+location = 2
+metadata/_custom_type_script = "uid://n0snr621jcxe"
+
+[node name="BoosterAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 6)
+sprite_frames = SubResource("SpriteFrames_ra7no")
+animation = &"boost"
