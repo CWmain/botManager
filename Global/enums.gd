@@ -2,5 +2,6 @@ extends Node
 
 enum MODIFICATION {
 	MOVESPEED,
+	ROTATIONSPEED,
 	CAPACITY
 }

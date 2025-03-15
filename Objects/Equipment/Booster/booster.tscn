@@ -42,7 +42,8 @@ script = ExtResource("1_ajkcg")
 location = 2
 modifier = 15.0
 statModifers = Dictionary[int, float]({
-0: 1.0
+0: 100.0,
+1: 5.0
 })
 metadata/_custom_type_script = "uid://n0snr621jcxe"
 

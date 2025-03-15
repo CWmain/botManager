@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://6nfck3esvvfr"]
+[gd_scene load_steps=3 format=3 uid="uid://6nfck3esvvfr"]
 
 [ext_resource type="Texture2D" uid="uid://cpccg3aupw014" path="res://icon.svg" id="1_d3q2k"]
-[ext_resource type="Script" uid="uid://dpryxxq2vfefv" path="res://Scene/icon.gd" id="2_7lj54"]
 [ext_resource type="PackedScene" uid="uid://i84ma6rgf6kk" path="res://Objects/Bots/base_bot.tscn" id="3_0ce0i"]
 
 [node name="Control" type="Control"]
@@ -32,7 +31,6 @@ position = Vector2(102, 96)
 [node name="Icon" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(102, 96)
 texture = ExtResource("1_d3q2k")
-script = ExtResource("2_7lj54")
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Icon"]
 
