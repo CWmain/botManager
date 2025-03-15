@@ -1,8 +1,8 @@
 extends Node2D
 
 @export_group("Color", "c_")
-@export var c_original: PackedColorArray
-@export var c_reColor: PackedColorArray
+@export var c_original: Texture2D
+@export var c_reColor: Texture2D
 
 @export var baseMoveSpeed: float = 20
 @export var baseRotationSpeed: float = 1
@@ -29,8 +29,6 @@ func _ready() -> void:
 	sprite_2d.material.set_shader_parameter("original", c_original)
 	sprite_2d.material.set_shader_parameter("recolor", c_reColor)	
 	updateEquipment()
-	print(modifierTracker)
-	print(Enums.MODIFICATION.find_key(0))
 	print_modifer_tracker()
 
 func _process(delta: float) -> void:	
@@ -54,7 +52,6 @@ func print_modifer_tracker():
 
 ## Called to recalculate totalStats (i.e moveSpeed)
 func updateEquipment():
-	var curEquipment: Equipment
 	if e_head != null:
 		if curHead != null:
 			curHead.queue_free()
@@ -96,5 +93,3 @@ func calculateTotalStats(equipment: Equipment):
 			modifierTracker[change].append([equipment.name, statChanges[change]])
 		else:
 			modifierTracker[change] = [[equipment.name, statChanges[change]]]
-		
-		print(statChanges[change])

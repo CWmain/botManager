@@ -2,8 +2,9 @@ shader_type canvas_item;
 
 
 const float EPSILON = 0.0001;
-uniform vec4 original[4] : source_color;
-uniform vec4 recolor[4] : source_color;
+
+uniform sampler2D original;
+uniform sampler2D recolor;
 
 bool sameColor(vec4 a, vec4 b){
 	for (int i = 0; i < 4; i++){
@@ -15,15 +16,12 @@ bool sameColor(vec4 a, vec4 b){
 }
 
 void fragment() {
-	
-	for(int i = 0; i < original.length(); i++){
-		if (sameColor(COLOR, original[i])){
-			COLOR = recolor[i];
+	float start = 0.125; 
+	for(int i = 0; i < 4; i++){
+		vec4 baseC = texture(original, vec2(start + 0.25*float(i), 0.5));
+		vec4 newC = texture(recolor, vec2(start + 0.25*float(i), 0.5));
+		if (sameColor(COLOR, baseC)){
+			COLOR = newC;
 		}
 	}
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the CanvasItem.
-//	// Uncomment to replace the default light processing function with this one.
-//}
