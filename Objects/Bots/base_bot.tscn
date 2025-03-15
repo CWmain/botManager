@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://i84ma6rgf6kk"]
+[gd_scene load_steps=7 format=3 uid="uid://i84ma6rgf6kk"]
 
 [ext_resource type="Texture2D" uid="uid://cka5rlq7af4dm" path="res://Objects/Bots/Bot3SlotBase.png" id="1_jaqpk"]
 [ext_resource type="Shader" uid="uid://cn202joa1mqr5" path="res://Objects/Bots/reColor.gdshader" id="1_qmvjg"]
 [ext_resource type="Script" uid="uid://y7snawi8sakl" path="res://Objects/Bots/base_bot.gd" id="1_weu0y"]
+[ext_resource type="PackedScene" uid="uid://dstoqrci8ck5o" path="res://Objects/Equipment/BackPack/back_pack.tscn" id="2_6xkl7"]
 [ext_resource type="PackedScene" uid="uid://brwbgql70uqor" path="res://Objects/Equipment/Booster/booster.tscn" id="4_hnho6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qmvjg"]
@@ -14,6 +15,7 @@ shader_parameter/recolor = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 script = ExtResource("1_weu0y")
 c_original = PackedColorArray(0.294118, 0.258824, 1, 1, 0.466667, 0.592157, 1, 1, 1, 0.639216, 0.227451, 1, 1, 0.823529, 0.498039, 1)
 c_reColor = PackedColorArray(1, 0.2, 0.137255, 1, 0.596078, 0, 0, 1, 0, 1, 0, 1, 0, 0.298039, 0, 1)
+e_body = ExtResource("2_6xkl7")
 e_legs = ExtResource("4_hnho6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

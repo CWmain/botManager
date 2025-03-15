@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dstoqrci8ck5o"]
+
+[ext_resource type="Script" uid="uid://n0snr621jcxe" path="res://Objects/Equipment/base_equipment.gd" id="1_87nlg"]
+[ext_resource type="Texture2D" uid="uid://bwdw7pcxfd0tx" path="res://Objects/Equipment/BackPack/BackPack.png" id="2_qtu6p"]
+
+[node name="BackPack" type="Node2D"]
+script = ExtResource("1_87nlg")
+location = 1
+statModifers = Dictionary[int, float]({
+0: -5.0,
+2: 10.0
+})
+metadata/_custom_type_script = "uid://n0snr621jcxe"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qtu6p")
