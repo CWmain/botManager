@@ -25,6 +25,10 @@ var curBody: Equipment
 var curLegs: Equipment
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var path_finder: NavigationAgent2D = $PathFinder
+@onready var camera_2d: Camera2D = $Camera2D
+
+var travelTo = false
 
 ## Stores the calculation breakdown of each element
 var modifierTracker: Dictionary[Enums.MODIFICATION, Array]
@@ -34,18 +38,30 @@ func _ready() -> void:
 	sprite_2d.material.set_shader_parameter("recolor", c_reColor)	
 	updateStatTotals()
 	print_modifer_tracker()
+	path_finder.target_position = Vector2(150,100)
+	travelTo = true
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("GoTo"):
+		path_finder.target_position = get_viewport().get_mouse_position()
+		travelTo = true
+	if Input.is_action_just_pressed("BotCam"):
+		camera_2d.enabled = true
+	if Input.is_action_just_released("BotCam"):
+		camera_2d.enabled = false
 
 func _physics_process(delta: float) -> void:
-	var hor: float = Input.get_axis("ui_left", "ui_right")
-	rotation += hor*delta*statTotals[Enums.MODIFICATION.ROTATIONSPEED]
-	var ver: float = Input.get_axis("ui_up", "ui_down")
-	if ver:
+	var nextPathPosition = path_finder.get_next_path_position()
+	rotation = (nextPathPosition - global_position).angle()+PI/2
+	
+	if travelTo:
 		curLegs.playAnimation()
+		var moveDirection: Vector2 = Vector2(0,-1).rotated(rotation)
+		velocity = moveDirection*statTotals[Enums.MODIFICATION.MOVESPEED]*delta
 	else:
 		curLegs.endAnimation()
+		velocity = Vector2.ZERO
 	
-	var moveDirection: Vector2 = Vector2(0,ver).normalized().rotated(rotation)
-	velocity = moveDirection*statTotals[Enums.MODIFICATION.MOVESPEED]*delta
 	move_and_slide()
 
 ## Function which prints out the data in modifierTracker in a clean way
@@ -97,3 +113,7 @@ func calculateStatsFromEquipment(equipment: Equipment):
 			modifierTracker[change].append([equipment.name, statChanges[change]])
 		else:
 			modifierTracker[change] = [[equipment.name, statChanges[change]]]
+
+
+func _on_path_finder_navigation_finished() -> void:
+	travelTo = false

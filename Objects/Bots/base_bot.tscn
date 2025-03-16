@@ -32,7 +32,14 @@ material = SubResource("ShaderMaterial_qmvjg")
 texture = ExtResource("1_jaqpk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 zoom = Vector2(5, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ukfyj")
+
+[node name="PathFinder" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+debug_enabled = true
+
+[connection signal="navigation_finished" from="PathFinder" to="." method="_on_path_finder_navigation_finished"]
