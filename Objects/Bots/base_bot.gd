@@ -4,8 +4,13 @@ extends Node2D
 @export var c_original: Texture2D
 @export var c_reColor: Texture2D
 
-@export var baseMoveSpeed: float = 20
-@export var baseRotationSpeed: float = 1
+## Contains all base stats of the bot[br]
+## Dictionary accessed via Enums.MODIFICATION
+@export var statBases: Dictionary[Enums.MODIFICATION, float]
+
+## Contains all total stats of the bot[br]
+## Dictionary accessed via Enums.MODIFICATION
+var statTotals: Dictionary[Enums.MODIFICATION, float]
 
 @export_group("Equipped", "e_")
 @export var e_head: PackedScene
@@ -21,10 +26,6 @@ var curLegs: Equipment
 ## Stores the calculation breakdown of each element
 var modifierTracker: Dictionary[Enums.MODIFICATION, Array]
 
-## The total calculate movespeed
-var totalMoveSpeed: float = 0
-var totalRotationSpeed: float = 0
-
 func _ready() -> void:
 	sprite_2d.material.set_shader_parameter("original", c_original)
 	sprite_2d.material.set_shader_parameter("recolor", c_reColor)	
@@ -33,7 +34,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:	
 	var hor: float = Input.get_axis("ui_left", "ui_right")
-	rotation += hor*delta*totalRotationSpeed
+	rotation += hor*delta*statTotals[Enums.MODIFICATION.ROTATIONSPEED]
 	var ver: float = Input.get_axis("ui_up", "ui_down")
 	if ver:
 		curLegs.playAnimation()
@@ -41,7 +42,7 @@ func _process(delta: float) -> void:
 		curLegs.endAnimation()
 	
 	var moveDirection: Vector2 = Vector2(0,ver).normalized().rotated(rotation)
-	position += moveDirection*totalMoveSpeed*delta
+	position += moveDirection*statTotals[Enums.MODIFICATION.MOVESPEED]*delta
 
 ## Function which prints out the data in modifierTracker in a clean way
 func print_modifer_tracker():
@@ -79,16 +80,13 @@ func updateEquipment():
 ## Calculate the total stats and apply their passive effect onto totalStats
 func calculateTotalStats(equipment: Equipment):
 	var statChanges: Dictionary[Enums.MODIFICATION, float] = equipment.statModifers
-	totalMoveSpeed = baseMoveSpeed
-	totalRotationSpeed = baseRotationSpeed
+	statTotals = statBases.duplicate()
 	for change in statChanges:
-		match change:
-			Enums.MODIFICATION.MOVESPEED:
-				totalMoveSpeed += statChanges[change]
-			Enums.MODIFICATION.ROTATIONSPEED:
-				totalRotationSpeed += statChanges[change]
-			_:
-				printerr("Unhandled Enum %s in %s" % [Enums.MODIFICATION.find_key(change), equipment.name])
+		if statTotals.has(change):
+			statTotals[change] += statChanges[change]
+		else:
+			printerr("Enum %s from %s not in StatBases" % [Enums.MODIFICATION.find_key(change), equipment.name])
+			
 		if modifierTracker.has(change):
 			modifierTracker[change].append([equipment.name, statChanges[change]])
 		else:

@@ -9,9 +9,6 @@ enum placement{
 }
 
 @export var location: placement
-@export var toModify: Enums.MODIFICATION
-@export var modifier: float
-
 @export var statModifers: Dictionary[Enums.MODIFICATION, float]
 	
 ## Does the effect of the equipment
