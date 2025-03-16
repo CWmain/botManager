@@ -42,7 +42,7 @@ script = ExtResource("1_ajkcg")
 EID = "Booster"
 location = 2
 statModifers = Dictionary[int, float]({
-0: 100.0,
+0: 5000.0,
 1: 5.0
 })
 metadata/_custom_type_script = "uid://n0snr621jcxe"

@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @export_group("Color", "c_")
 @export var c_original: Texture2D
@@ -35,7 +35,7 @@ func _ready() -> void:
 	updateStatTotals()
 	print_modifer_tracker()
 
-func _process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
 	var hor: float = Input.get_axis("ui_left", "ui_right")
 	rotation += hor*delta*statTotals[Enums.MODIFICATION.ROTATIONSPEED]
 	var ver: float = Input.get_axis("ui_up", "ui_down")
@@ -45,7 +45,8 @@ func _process(delta: float) -> void:
 		curLegs.endAnimation()
 	
 	var moveDirection: Vector2 = Vector2(0,ver).normalized().rotated(rotation)
-	position += moveDirection*statTotals[Enums.MODIFICATION.MOVESPEED]*delta
+	velocity = moveDirection*statTotals[Enums.MODIFICATION.MOVESPEED]*delta
+	move_and_slide()
 
 ## Function which prints out the data in modifierTracker in a clean way
 func print_modifer_tracker():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://i84ma6rgf6kk"]
+[gd_scene load_steps=10 format=3 uid="uid://i84ma6rgf6kk"]
 
 [ext_resource type="Texture2D" uid="uid://cka5rlq7af4dm" path="res://Objects/Bots/Bot3SlotBase.png" id="1_jaqpk"]
 [ext_resource type="Shader" uid="uid://cn202joa1mqr5" path="res://Objects/Bots/reColor.gdshader" id="1_qmvjg"]
@@ -11,14 +11,18 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qmvjg"]
 shader = ExtResource("1_qmvjg")
 
-[node name="BaseBot" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukfyj"]
+height = 36.0
+
+[node name="Base_Bot" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_weu0y")
 c_original = ExtResource("2_ukfyj")
 c_reColor = ExtResource("3_6qp8m")
 statBases = Dictionary[int, float]({
-0: 5.0,
-1: 1.0,
-2: 100.0
+0: 1000.0,
+1: 2.0,
+2: 5.0
 })
 e_body = ExtResource("2_6xkl7")
 e_legs = ExtResource("4_hnho6")
@@ -29,3 +33,6 @@ texture = ExtResource("1_jaqpk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ukfyj")
