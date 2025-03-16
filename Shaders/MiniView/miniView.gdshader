@@ -6,7 +6,8 @@ uniform float zoom = 0.1;
 
 void fragment() {
 	vec2 resolution = 1.0/SCREEN_PIXEL_SIZE;
-	vec2 zoom_uv = (UV * vec2(zoom)+(toTrack/resolution)-vec2(zoom/2.0));
+	float xY = resolution.x/resolution.y;
+	vec2 zoom_uv = (UV * vec2(zoom,xY*zoom)+(toTrack/resolution)-vec2(zoom/2.0, xY*zoom/2.0));
 	vec4 screenPixel = texture(screen_texture, zoom_uv);
 	
 	// If zoom takes you out of the texture display nothing
@@ -17,8 +18,3 @@ void fragment() {
 		COLOR = screenPixel;
 	}
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the CanvasItem.
-//	// Uncomment to replace the default light processing function with this one.
-//}

@@ -30,7 +30,7 @@ sources/0 = SubResource("TileSetAtlasSource_p35hx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_grk85"]
 shader = ExtResource("3_vtgk1")
-shader_parameter/toTrack = Vector2(200, 200)
+shader_parameter/toTrack = Vector2(300, 300)
 shader_parameter/zoom = 0.15
 
 [node name="Control" type="Control"]
