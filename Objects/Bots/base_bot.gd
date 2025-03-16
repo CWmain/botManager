@@ -46,9 +46,7 @@ func _process(_delta: float) -> void:
 		path_finder.target_position = get_viewport().get_mouse_position()
 		travelTo = true
 	if Input.is_action_just_pressed("BotCam"):
-		camera_2d.enabled = true
-	if Input.is_action_just_released("BotCam"):
-		camera_2d.enabled = false
+		camera_2d.enabled = !camera_2d.enabled
 
 func _physics_process(delta: float) -> void:
 	var nextPathPosition = path_finder.get_next_path_position()

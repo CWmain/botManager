@@ -32,8 +32,11 @@ material = SubResource("ShaderMaterial_qmvjg")
 texture = ExtResource("1_jaqpk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
 enabled = false
 zoom = Vector2(5, 5)
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ukfyj")
