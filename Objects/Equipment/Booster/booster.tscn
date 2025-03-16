@@ -39,6 +39,7 @@ animations = [{
 
 [node name="Booster" type="Node2D"]
 script = ExtResource("1_ajkcg")
+EID = "Booster"
 location = 2
 statModifers = Dictionary[int, float]({
 0: 100.0,

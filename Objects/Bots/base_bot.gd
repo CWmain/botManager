@@ -6,7 +6,10 @@ extends Node2D
 
 ## Contains all base stats of the bot[br]
 ## Dictionary accessed via Enums.MODIFICATION
-@export var statBases: Dictionary[Enums.MODIFICATION, float]
+@export var statBases: Dictionary[Enums.MODIFICATION, float]:
+	set(value):
+		statBases = value
+		updateStatTotals()
 
 ## Contains all total stats of the bot[br]
 ## Dictionary accessed via Enums.MODIFICATION
@@ -29,7 +32,7 @@ var modifierTracker: Dictionary[Enums.MODIFICATION, Array]
 func _ready() -> void:
 	sprite_2d.material.set_shader_parameter("original", c_original)
 	sprite_2d.material.set_shader_parameter("recolor", c_reColor)	
-	updateEquipment()
+	updateStatTotals()
 	print_modifer_tracker()
 
 func _process(delta: float) -> void:	
@@ -52,14 +55,14 @@ func print_modifer_tracker():
 			print("	Added %f from equipment %s" % [pair[1], pair[0]])
 
 ## Called to recalculate totalStats (i.e moveSpeed)
-func updateEquipment():
+func updateStatTotals():
 	if e_head != null:
 		if curHead != null:
 			curHead.queue_free()
 		curHead = e_head.instantiate()
 		curHead.position = Vector2(0,-16)
 		add_child(curHead)
-		calculateTotalStats(curHead)
+		calculateStatsFromEquipment(curHead)
 		
 	if e_body != null:
 		if curBody != null:
@@ -67,7 +70,7 @@ func updateEquipment():
 		curBody = e_body.instantiate()
 		curBody.position = Vector2(0,0)
 		add_child(curBody)
-		calculateTotalStats(curBody)
+		calculateStatsFromEquipment(curBody)
 		
 	if e_legs != null:
 		if curLegs != null:
@@ -75,18 +78,20 @@ func updateEquipment():
 		curLegs = e_legs.instantiate()
 		curLegs.position = Vector2(0,16)
 		add_child(curLegs)
-		calculateTotalStats(curLegs)
+		calculateStatsFromEquipment(curLegs)
 
 ## Calculate the total stats and apply their passive effect onto totalStats
-func calculateTotalStats(equipment: Equipment):
+func calculateStatsFromEquipment(equipment: Equipment):
 	var statChanges: Dictionary[Enums.MODIFICATION, float] = equipment.statModifers
 	statTotals = statBases.duplicate()
 	for change in statChanges:
+		# Applies change to total stats
 		if statTotals.has(change):
 			statTotals[change] += statChanges[change]
 		else:
-			printerr("Enum %s from %s not in StatBases" % [Enums.MODIFICATION.find_key(change), equipment.name])
-			
+			printerr("Enum %s from %s not in StatBases" % [Enums.MODIFICATION.find_key(change), equipment.EID])
+		
+		# Records the equipment and the change caused for stat breakdown
 		if modifierTracker.has(change):
 			modifierTracker[change].append([equipment.name, statChanges[change]])
 		else:

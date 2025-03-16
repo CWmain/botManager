@@ -8,6 +8,7 @@ enum placement{
 	LEGS
 }
 
+@export var EID: String = "Default"
 @export var location: placement
 @export var statModifers: Dictionary[Enums.MODIFICATION, float]
 	

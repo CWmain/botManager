@@ -16,8 +16,9 @@ script = ExtResource("1_weu0y")
 c_original = ExtResource("2_ukfyj")
 c_reColor = ExtResource("3_6qp8m")
 statBases = Dictionary[int, float]({
-0: 10.0,
-1: 1.0
+0: 5.0,
+1: 1.0,
+2: 100.0
 })
 e_body = ExtResource("2_6xkl7")
 e_legs = ExtResource("4_hnho6")
