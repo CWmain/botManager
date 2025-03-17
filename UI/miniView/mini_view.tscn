@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwaga88lnbysd"]
+
+[ext_resource type="Script" uid="uid://ctqyt1limjpiw" path="res://UI/miniView/mini_view.gd" id="1_xeomn"]
+
+[node name="MiniView" type="SubViewportContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xeomn")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+ignore_rotation = false
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.0

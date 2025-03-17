@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://6nfck3esvvfr"]
+[gd_scene load_steps=10 format=4 uid="uid://6nfck3esvvfr"]
 
 [ext_resource type="PackedScene" uid="uid://i84ma6rgf6kk" path="res://Objects/Bots/base_bot.tscn" id="3_0ce0i"]
 [ext_resource type="Texture2D" uid="uid://1pg3ev0nwgjk" path="res://Objects/Tilemap/TempTileTexture.png" id="3_pntdf"]
-[ext_resource type="Shader" uid="uid://cxhr15dn3kjh8" path="res://Shaders/MiniView/miniView.gdshader" id="3_vtgk1"]
-[ext_resource type="Script" uid="uid://copmgmnotph85" path="res://UI/miniView/mini_view.gd" id="4_pntdf"]
+[ext_resource type="PackedScene" uid="uid://cwaga88lnbysd" path="res://UI/miniView/mini_view.tscn" id="3_vtgk1"]
 [ext_resource type="Script" uid="uid://uldvrqp4ukv" path="res://Scene/sub_viewport.gd" id="5_vtgk1"]
 [ext_resource type="Script" uid="uid://cdy40ypxwyw36" path="res://Scene/CameraTracker.gd" id="6_grk85"]
 
@@ -29,11 +28,6 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_p35hx")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_grk85"]
-shader = ExtResource("3_vtgk1")
-shader_parameter/toTrack = Vector2(300, 300)
-shader_parameter/zoom = 0.15
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -66,24 +60,24 @@ tile_set = SubResource("TileSet_t37pv")
 [node name="BaseBot" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_0ce0i")]
 position = Vector2(271, 110)
 
-[node name="MiniView" type="ColorRect" parent="." node_paths=PackedStringArray("toTrack")]
-visible = false
-material = SubResource("ShaderMaterial_grk85")
-custom_minimum_size = Vector2(200, 200)
+[node name="MiniView" parent="." node_paths=PackedStringArray("toTrack") instance=ExtResource("3_vtgk1")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -512.0
+offset_top = -512.0
+offset_right = 0.0
+offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
-script = ExtResource("4_pntdf")
 toTrack = NodePath("../SubViewportContainer/SubViewport/BaseBot")
+cameraZoomScale = 2.0
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -103,7 +97,7 @@ transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(200, 200)
-render_target_update_mode = 4
+render_target_update_mode = 0
 script = ExtResource("5_vtgk1")
 toCopy = NodePath("../../SubViewportContainer/SubViewport")
 
