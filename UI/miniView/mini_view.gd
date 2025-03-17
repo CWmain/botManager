@@ -25,7 +25,8 @@ func _process(delta: float) -> void:
 	if toTrack != null:
 		camera_2d.position = toTrack.position
 		camera_2d.rotation = toTrack.rotation
-		
+
+## Call updateViewportWorld2D whenever the target moves worlds
 func updateViewportWorld2D():
 	if toTrack == null || sub_viewport == null:
 		return

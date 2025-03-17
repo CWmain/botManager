@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://6nfck3esvvfr"]
+[gd_scene load_steps=8 format=4 uid="uid://6nfck3esvvfr"]
 
 [ext_resource type="PackedScene" uid="uid://i84ma6rgf6kk" path="res://Objects/Bots/base_bot.tscn" id="3_0ce0i"]
 [ext_resource type="Texture2D" uid="uid://1pg3ev0nwgjk" path="res://Objects/Tilemap/TempTileTexture.png" id="3_pntdf"]
 [ext_resource type="PackedScene" uid="uid://cwaga88lnbysd" path="res://UI/miniView/mini_view.tscn" id="3_vtgk1"]
-[ext_resource type="Script" uid="uid://uldvrqp4ukv" path="res://Scene/sub_viewport.gd" id="5_vtgk1"]
-[ext_resource type="Script" uid="uid://cdy40ypxwyw36" path="res://Scene/CameraTracker.gd" id="6_grk85"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vtgk1"]
 
@@ -75,33 +73,3 @@ grow_horizontal = 0
 grow_vertical = 0
 toTrack = NodePath("../SubViewportContainer/SubViewport/BaseBot")
 cameraZoomScale = 2.0
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -211.0
-offset_top = -212.0
-offset_right = -11.0
-offset_bottom = -12.0
-grow_horizontal = 0
-grow_vertical = 0
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2" node_paths=PackedStringArray("toCopy")]
-transparent_bg = true
-handle_input_locally = false
-canvas_item_default_texture_filter = 0
-size = Vector2i(200, 200)
-render_target_update_mode = 0
-script = ExtResource("5_vtgk1")
-toCopy = NodePath("../../SubViewportContainer/SubViewport")
-
-[node name="Camera2D" type="Camera2D" parent="SubViewportContainer2/SubViewport" node_paths=PackedStringArray("toFollow")]
-zoom = Vector2(3, 3)
-script = ExtResource("6_grk85")
-toFollow = NodePath("../../../SubViewportContainer/SubViewport/BaseBot")
