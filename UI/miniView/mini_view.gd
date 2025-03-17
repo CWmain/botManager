@@ -8,17 +8,23 @@ extends SubViewportContainer
 		updateViewportWorld2D()
 
 ## The amount of zoom on the camera
-@export_range(0, 10, 0.1, "or_less", "or_greater") var cameraZoomScale: float = 1.0
+@export_range(0, 10, 0.1, "or_less", "or_greater") var cameraZoomScale: float = 1.0:
+	set(value):
+		cameraZoomScale = value
+		if camera_2d != null:
+			camera_2d.zoom = Vector2(cameraZoomScale,cameraZoomScale)
 
 @onready var camera_2d: Camera2D = $SubViewport/Camera2D
 @onready var sub_viewport: SubViewport = $SubViewport
 
 func _ready() -> void:
 	updateViewportWorld2D()
+	camera_2d.zoom = Vector2(cameraZoomScale,cameraZoomScale)
 
 func _process(delta: float) -> void:
 	if toTrack != null:
 		camera_2d.position = toTrack.position
+		camera_2d.rotation = toTrack.rotation
 		
 func updateViewportWorld2D():
 	if toTrack == null || sub_viewport == null:
