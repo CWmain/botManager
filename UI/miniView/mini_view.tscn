@@ -9,6 +9,7 @@ script = ExtResource("1_xeomn")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
 size = Vector2i(200, 200)
 render_target_update_mode = 4
 
