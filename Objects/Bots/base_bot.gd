@@ -54,8 +54,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("GoTo") and foe == null:
-		var mousePos: Vector2 = get_viewport().get_camera_2d().get_global_mouse_position()
-
+		var mousePos: Vector2 = get_viewport().get_mouse_position() if get_viewport().get_camera_2d()==null else get_viewport().get_camera_2d().get_global_mouse_position()
 		path_finder.target_position = mousePos
 		print_debug(statTotals[Enums.MODIFICATION.MOVESPEED])
 		travelTo = true
