@@ -21,7 +21,7 @@ func _ready() -> void:
 	updateViewportWorld2D()
 	camera_2d.zoom = Vector2(cameraZoomScale,cameraZoomScale)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if toTrack != null:
 		camera_2d.position = toTrack.position
 		camera_2d.rotation = toTrack.rotation

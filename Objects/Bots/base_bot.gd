@@ -89,7 +89,6 @@ func print_modifer_tracker():
 func print_current_equipment():
 	var empty: String = "NONE"
 	print("Equipment of ", name)
-	var headString: String = empty if curHead==null else curHead.EID
 	print("	Head: %s" % empty if curHead==null else curHead.EID)
 	print("	Body: ", empty if curBody==null else curBody.EID)
 	print("	Legs: ", empty if curLegs==null else curLegs.EID)
