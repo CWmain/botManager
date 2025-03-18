@@ -65,6 +65,7 @@ idle = NodePath("../Idle")
 
 [node name="Flee" parent="CombatStateMachine" node_paths=PackedStringArray("approach") instance=ExtResource("10_x3iqn")]
 approach = NodePath("../Approach")
+fleeDistance = 50.0
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 0

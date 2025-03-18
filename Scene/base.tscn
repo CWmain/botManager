@@ -67,8 +67,9 @@ c_original = ExtResource("3_grk85")
 c_reColor = ExtResource("4_vtgk1")
 foe = NodePath("../Base_Bot2")
 
-[node name="Base_Bot2" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_0ce0i")]
+[node name="Base_Bot2" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("foe") instance=ExtResource("3_0ce0i")]
 position = Vector2(133, 177)
+foe = NodePath("../Base_Bot")
 
 [node name="MiniView" parent="." node_paths=PackedStringArray("toTrack") instance=ExtResource("3_vtgk1")]
 layout_mode = 1
