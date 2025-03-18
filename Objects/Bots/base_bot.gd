@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Bot
 
 @export_group("Color", "c_")
 @export var c_original: Texture2D
@@ -29,11 +30,17 @@ var curLegs: Equipment
 @onready var camera_2d: Camera2D = $Camera2D
 
 var travelTo = false
-
+var canAttack: bool = true
 ## Stores the calculation breakdown of each element
 var modifierTracker: Dictionary[Enums.MODIFICATION, Array]
 
+# State Machine
+@onready var combat_state_machine: Node = $CombatStateMachine
+@export var foe: Bot
+signal withinAttackRange
+
 func _ready() -> void:
+	combat_state_machine.foe = foe
 	# Have to duplicate the material locally otherwise an update in
 	# one instance updates all instances for recoloring
 	sprite_2d.material = sprite_2d.material.duplicate()
@@ -130,6 +137,11 @@ func calculateStatsFromEquipment(equipment: Equipment):
 		else:
 			modifierTracker[change] = [[equipment.name, statChanges[change]]]
 
+func doAttack()->void:
+	canAttack = false
+	$AttackCooldown.start()
+
+
 func wander()->void:
 	path_finder.target_position = position + Vector2(randf()*200-100,randf()*200-100)
 	travelTo = true
@@ -137,4 +149,14 @@ func wander()->void:
 
 func _on_path_finder_navigation_finished() -> void:
 	travelTo = false
-	wander()
+	#wander()
+
+
+func _on_attack_range_body_entered(body: Node2D) -> void:
+	if body == foe:
+		print("Detected %s" % body.name)
+		withinAttackRange.emit()
+
+
+func _on_attack_cooldown_timeout() -> void:
+	canAttack = true

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtw660v1ah1g2"]
+
+[ext_resource type="Script" uid="uid://btiboh2llrgtg" path="res://Objects/Bots/StateMachine/Attack/attack.gd" id="1_v7en2"]
+
+[node name="Attack" type="Node"]
+script = ExtResource("1_v7en2")
+metadata/_custom_type_script = "uid://c1jpua0p86g30"

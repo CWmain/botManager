@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://do17gtia3q5tu"]
+
+[ext_resource type="Script" uid="uid://b1lx3b8j1b0j7" path="res://Objects/Bots/StateMachine/Approach/approach.gd" id="1_20cb8"]
+
+[node name="Approach" type="Node"]
+script = ExtResource("1_20cb8")
+metadata/_custom_type_script = "uid://c1jpua0p86g30"

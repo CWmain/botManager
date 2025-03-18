@@ -61,15 +61,16 @@ tile_set = SubResource("TileSet_t37pv")
 position = Vector2(300, 168)
 zoom = Vector2(2, 2)
 
-[node name="Base_Bot" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_0ce0i")]
-position = Vector2(87, 68)
+[node name="Base_Bot" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("foe") instance=ExtResource("3_0ce0i")]
+position = Vector2(460, 201)
 c_original = ExtResource("3_grk85")
 c_reColor = ExtResource("4_vtgk1")
+foe = NodePath("../Base_Bot2")
 
 [node name="Base_Bot2" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_0ce0i")]
 position = Vector2(133, 177)
 
-[node name="MiniView" parent="." instance=ExtResource("3_vtgk1")]
+[node name="MiniView" parent="." node_paths=PackedStringArray("toTrack") instance=ExtResource("3_vtgk1")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -82,4 +83,5 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
+toTrack = NodePath("../SubViewportContainer/SubViewport/Base_Bot")
 cameraZoomScale = 2.0

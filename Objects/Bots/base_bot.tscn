@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://i84ma6rgf6kk"]
+[gd_scene load_steps=14 format=3 uid="uid://i84ma6rgf6kk"]
 
 [ext_resource type="Texture2D" uid="uid://cka5rlq7af4dm" path="res://Objects/Bots/Bot3SlotBase.png" id="1_jaqpk"]
 [ext_resource type="Shader" uid="uid://cn202joa1mqr5" path="res://Objects/Bots/reColor.gdshader" id="1_qmvjg"]
 [ext_resource type="Script" uid="uid://y7snawi8sakl" path="res://Objects/Bots/base_bot.gd" id="1_weu0y"]
 [ext_resource type="PackedScene" uid="uid://dstoqrci8ck5o" path="res://Objects/Equipment/BackPack/back_pack.tscn" id="2_6xkl7"]
 [ext_resource type="PackedScene" uid="uid://brwbgql70uqor" path="res://Objects/Equipment/Booster/booster.tscn" id="4_hnho6"]
+[ext_resource type="PackedScene" uid="uid://bnbq1kcy4upc1" path="res://Objects/Bots/StateMachine/combat_state_machine.tscn" id="6_6qp8m"]
+[ext_resource type="PackedScene" uid="uid://do17gtia3q5tu" path="res://Objects/Bots/StateMachine/Approach/approach.tscn" id="7_vgcp1"]
+[ext_resource type="PackedScene" uid="uid://dtrvy48u1aqib" path="res://Objects/Bots/StateMachine/Idle/idle.tscn" id="8_x3iqn"]
+[ext_resource type="PackedScene" uid="uid://dtw660v1ah1g2" path="res://Objects/Bots/StateMachine/Attack/attack.tscn" id="9_vgcp1"]
+[ext_resource type="PackedScene" uid="uid://bchd576j8hqax" path="res://Objects/Bots/StateMachine/Flee/flee.tscn" id="10_x3iqn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6xkl7"]
 shader = ExtResource("1_qmvjg")
@@ -12,7 +17,10 @@ shader = ExtResource("1_qmvjg")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukfyj"]
 height = 36.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qp8m"]
+
 [node name="Base_Bot" type="CharacterBody2D"]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_weu0y")
 statBases = Dictionary[int, float]({
@@ -39,8 +47,36 @@ shape = SubResource("CapsuleShape2D_ukfyj")
 
 [node name="PathFinder" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
-avoidance_enabled = true
-radius = 64.0
 debug_enabled = true
 
+[node name="CombatStateMachine" parent="." node_paths=PackedStringArray("me", "initialState") instance=ExtResource("6_6qp8m")]
+me = NodePath("..")
+initialState = NodePath("Idle")
+
+[node name="Idle" parent="CombatStateMachine" node_paths=PackedStringArray("approach", "flee") instance=ExtResource("8_x3iqn")]
+approach = NodePath("../Approach")
+flee = NodePath("../Flee")
+
+[node name="Approach" parent="CombatStateMachine" node_paths=PackedStringArray("attack") instance=ExtResource("7_vgcp1")]
+attack = NodePath("../Attack")
+
+[node name="Attack" parent="CombatStateMachine" node_paths=PackedStringArray("idle") instance=ExtResource("9_vgcp1")]
+idle = NodePath("../Idle")
+
+[node name="Flee" parent="CombatStateMachine" node_paths=PackedStringArray("approach") instance=ExtResource("10_x3iqn")]
+approach = NodePath("../Approach")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_6qp8m")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
 [connection signal="navigation_finished" from="PathFinder" to="." method="_on_path_finder_navigation_finished"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

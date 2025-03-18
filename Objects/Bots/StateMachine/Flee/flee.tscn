@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bchd576j8hqax"]
+
+[ext_resource type="Script" uid="uid://d4dphak30dnot" path="res://Objects/Bots/StateMachine/Flee/flee.gd" id="1_8r8tb"]
+
+[node name="Flee" type="Node"]
+script = ExtResource("1_8r8tb")
+metadata/_custom_type_script = "uid://c1jpua0p86g30"
