@@ -65,7 +65,7 @@ idle = NodePath("../Idle")
 
 [node name="Flee" parent="CombatStateMachine" node_paths=PackedStringArray("approach") instance=ExtResource("10_x3iqn")]
 approach = NodePath("../Approach")
-fleeDistance = 50.0
+fleeDistance = 100.0
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 0
@@ -77,6 +77,7 @@ position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_6qp8m")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 5.0
 
 [connection signal="navigation_finished" from="PathFinder" to="." method="_on_path_finder_navigation_finished"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
