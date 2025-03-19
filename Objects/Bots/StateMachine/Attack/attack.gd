@@ -9,6 +9,5 @@ func update()->void:
 	doAttack()
 
 func doAttack()->void:
-	print("Unimplemented attack, imagine some cool animation")
 	me.doAttack()
 	tranistion.emit(self, idle)

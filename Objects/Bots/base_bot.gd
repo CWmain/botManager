@@ -30,13 +30,17 @@ var curLegs: Equipment
 @onready var camera_2d: Camera2D = $Camera2D
 
 var travelTo = false
-var canAttack: bool = true
 ## Stores the calculation breakdown of each element
 var modifierTracker: Dictionary[Enums.MODIFICATION, Array]
 
 # State Machine
 @onready var combat_state_machine: Node = $CombatStateMachine
 @export var foe: Bot
+
+# Attack
+@onready var attack_cooldown: Timer = $AttackCooldown
+var canAttack: bool = true
+
 signal withinAttackRange
 
 func _ready() -> void:
@@ -56,8 +60,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("GoTo") and foe == null:
 		var mousePos: Vector2 = get_viewport().get_mouse_position() if get_viewport().get_camera_2d()==null else get_viewport().get_camera_2d().get_global_mouse_position()
 		path_finder.target_position = mousePos
-		print_debug(statTotals[Enums.MODIFICATION.MOVESPEED])
 		travelTo = true
+		
 	if Input.is_action_just_pressed("BotCam"):
 		camera_2d.enabled = !camera_2d.enabled
 		camera_2d.make_current()
@@ -89,7 +93,7 @@ func print_modifer_tracker():
 func print_current_equipment():
 	var empty: String = "NONE"
 	print("Equipment of ", name)
-	print("	Head: %s" % empty if curHead==null else curHead.EID)
+	print("	Head: ", empty if curHead==null else curHead.EID)
 	print("	Body: ", empty if curBody==null else curBody.EID)
 	print("	Legs: ", empty if curLegs==null else curLegs.EID)
 
@@ -123,7 +127,6 @@ func updateStatTotals():
 ## Calculate the total stats and apply their passive effect onto totalStats
 func calculateStatsFromEquipment(equipment: Equipment):
 	var statChanges: Dictionary[Enums.MODIFICATION, float] = equipment.statModifers
-	statTotals = statBases.duplicate()
 	for change in statChanges:
 		# Applies change to total stats
 		if statTotals.has(change):
@@ -133,13 +136,17 @@ func calculateStatsFromEquipment(equipment: Equipment):
 		
 		# Records the equipment and the change caused for stat breakdown
 		if modifierTracker.has(change):
-			modifierTracker[change].append([equipment.name, statChanges[change]])
+			modifierTracker[change].append([equipment.EID, statChanges[change]])
 		else:
-			modifierTracker[change] = [[equipment.name, statChanges[change]]]
+			modifierTracker[change] = [[equipment.EID, statChanges[change]]]
 
 func doAttack()->void:
-	canAttack = false
-	$AttackCooldown.start()
+	##TODO Assumed all head is a weapon, fix this later
+	if curHead != null and canAttack:
+		curHead.equipmentAffect()
+		canAttack = false
+		attack_cooldown.wait_time = statTotals[Enums.MODIFICATION.ATTACK_COOLDOWN]
+		attack_cooldown.start()
 
 
 func wander()->void:
@@ -156,6 +163,10 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body == foe:
 		print("Detected %s" % body.name)
 		withinAttackRange.emit()
+
+
+func _head_reset() -> void:
+	canAttack = true
 
 
 func _on_attack_cooldown_timeout() -> void:

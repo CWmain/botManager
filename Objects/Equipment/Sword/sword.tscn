@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://bp7lo1ujwwol3"]
+
+[ext_resource type="Script" uid="uid://ct11mww8ujdvt" path="res://Objects/Equipment/Sword/sword.gd" id="1_nf334"]
+[ext_resource type="Texture2D" uid="uid://fwtqov3hce1p" path="res://Objects/Equipment/Sword/Sword.png" id="2_gfivo"]
+
+[sub_resource type="Animation" id="Animation_gfivo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitDetection:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_nf334"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitDetection:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.5708, 0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0ali"]
+_data = {
+&"RESET": SubResource("Animation_gfivo"),
+&"swing": SubResource("Animation_nf334")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4raa3"]
+size = Vector2(19, 14)
+
+[node name="Sword" type="Node2D"]
+script = ExtResource("1_nf334")
+EID = "Sword"
+statModifers = Dictionary[int, float]({
+3: 5.0
+})
+metadata/_custom_type_script = "uid://n0snr621jcxe"
+
+[node name="Sword" type="Sprite2D" parent="."]
+texture = ExtResource("2_gfivo")
+offset = Vector2(0, -6)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_b0ali")
+}
+
+[node name="HitDetection" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection"]
+position = Vector2(-0.5, -7)
+shape = SubResource("RectangleShape2D_4raa3")
+
+[node name="SwordCooldown" type="Timer" parent="."]

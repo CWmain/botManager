@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://6nfck3esvvfr"]
+[gd_scene load_steps=11 format=4 uid="uid://6nfck3esvvfr"]
 
 [ext_resource type="PackedScene" uid="uid://i84ma6rgf6kk" path="res://Objects/Bots/base_bot.tscn" id="3_0ce0i"]
 [ext_resource type="Texture2D" uid="uid://cxiofmhgyqn17" path="res://Objects/Bots/BaseColorPallet.png" id="3_grk85"]
 [ext_resource type="Texture2D" uid="uid://1pg3ev0nwgjk" path="res://Objects/Tilemap/TempTileTexture.png" id="3_pntdf"]
 [ext_resource type="PackedScene" uid="uid://cwaga88lnbysd" path="res://UI/miniView/mini_view.tscn" id="3_vtgk1"]
 [ext_resource type="Texture2D" uid="uid://cyonml1oiqtwa" path="res://Objects/Bots/ColorPallets/ColorSwapPallet.png" id="4_vtgk1"]
+[ext_resource type="PackedScene" uid="uid://bp7lo1ujwwol3" path="res://Objects/Equipment/Sword/sword.tscn" id="5_grk85"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vtgk1"]
 
@@ -65,6 +66,13 @@ zoom = Vector2(2, 2)
 position = Vector2(460, 201)
 c_original = ExtResource("3_grk85")
 c_reColor = ExtResource("4_vtgk1")
+statBases = Dictionary[int, float]({
+0: 1000.0,
+1: 2.0,
+2: 5.0,
+3: 1.0
+})
+e_head = ExtResource("5_grk85")
 foe = NodePath("../Base_Bot2")
 
 [node name="Base_Bot2" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_0ce0i")]
@@ -72,7 +80,8 @@ position = Vector2(133, 177)
 statBases = Dictionary[int, float]({
 0: 10000.0,
 1: 2.0,
-2: 5.0
+2: 5.0,
+3: 2.13
 })
 
 [node name="MiniView" parent="." node_paths=PackedStringArray("toTrack") instance=ExtResource("3_vtgk1")]
