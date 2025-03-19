@@ -40,6 +40,7 @@ var modifierTracker: Dictionary[Enums.MODIFICATION, Array]
 # Attack
 @onready var attack_cooldown: Timer = $AttackCooldown
 var canAttack: bool = true
+signal attackComplete
 
 signal withinAttackRange
 
@@ -106,6 +107,7 @@ func updateStatTotals():
 		curHead = e_head.instantiate()
 		curHead.position = Vector2(0,-16)
 		add_child(curHead)
+		curHead.attackComplete.connect(_on_attack_complete)
 		calculateStatsFromEquipment(curHead)
 		
 	if e_body != null:
@@ -168,6 +170,8 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 func _head_reset() -> void:
 	canAttack = true
 
+func _on_attack_complete()->void:
+	attackComplete.emit()
 
 func _on_attack_cooldown_timeout() -> void:
 	canAttack = true

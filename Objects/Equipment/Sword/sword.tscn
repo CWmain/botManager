@@ -70,7 +70,7 @@ size = Vector2(19, 14)
 script = ExtResource("1_nf334")
 EID = "Sword"
 statModifers = Dictionary[int, float]({
-3: 5.0
+3: 2.0
 })
 metadata/_custom_type_script = "uid://n0snr621jcxe"
 
@@ -92,3 +92,5 @@ position = Vector2(-0.5, -7)
 shape = SubResource("RectangleShape2D_4raa3")
 
 [node name="SwordCooldown" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
