@@ -40,8 +40,12 @@ var modifierTracker: Dictionary[Enums.MODIFICATION, Array]
 # Attack
 @onready var attack_cooldown: Timer = $AttackCooldown
 var canAttack: bool = true
-signal attackComplete
 
+# Flee
+@onready var wall_detector: RayCast2D = $WallDetector
+
+
+signal attackComplete
 signal withinAttackRange
 
 func _ready() -> void:
