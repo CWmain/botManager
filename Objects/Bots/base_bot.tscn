@@ -64,9 +64,10 @@ attack = NodePath("../Attack")
 [node name="Attack" parent="CombatStateMachine" node_paths=PackedStringArray("idle") instance=ExtResource("9_vgcp1")]
 idle = NodePath("../Idle")
 
-[node name="Flee" parent="CombatStateMachine" node_paths=PackedStringArray("approach") instance=ExtResource("10_x3iqn")]
+[node name="Flee" parent="CombatStateMachine" node_paths=PackedStringArray("approach", "rayCast") instance=ExtResource("10_x3iqn")]
 approach = NodePath("../Approach")
 fleeDistance = 100.0
+rayCast = NodePath("../../RayCast2D")
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 0
@@ -79,6 +80,9 @@ shape = SubResource("RectangleShape2D_6qp8m")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 60.0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -40)
 
 [connection signal="navigation_finished" from="PathFinder" to="." method="_on_path_finder_navigation_finished"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
