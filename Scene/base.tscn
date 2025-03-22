@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://6nfck3esvvfr"]
+[gd_scene load_steps=12 format=4 uid="uid://6nfck3esvvfr"]
 
 [ext_resource type="PackedScene" uid="uid://i84ma6rgf6kk" path="res://Objects/Bots/base_bot.tscn" id="3_0ce0i"]
 [ext_resource type="Texture2D" uid="uid://cxiofmhgyqn17" path="res://Objects/Bots/BaseColorPallet.png" id="3_grk85"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cwaga88lnbysd" path="res://UI/miniView/mini_view.tscn" id="3_vtgk1"]
 [ext_resource type="Texture2D" uid="uid://cyonml1oiqtwa" path="res://Objects/Bots/ColorPallets/ColorSwapPallet.png" id="4_vtgk1"]
 [ext_resource type="PackedScene" uid="uid://bp7lo1ujwwol3" path="res://Objects/Equipment/Sword/sword.tscn" id="5_grk85"]
+[ext_resource type="PackedScene" uid="uid://c6xw5ld6n7thg" path="res://DebugTools/HealthDisplay/health_display.tscn" id="6_p35hx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vtgk1"]
 
@@ -75,10 +76,18 @@ statBases = Dictionary[int, float]({
 e_head = ExtResource("5_grk85")
 foe = NodePath("../Base_Bot2")
 
+[node name="HealthDisplay" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("toDisplay") instance=ExtResource("6_p35hx")]
+z_index = 1
+toDisplay = NodePath("../Base_Bot")
+
+[node name="HealthDisplay2" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("toDisplay") instance=ExtResource("6_p35hx")]
+z_index = 1
+toDisplay = NodePath("../Base_Bot2")
+
 [node name="Base_Bot2" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("foe") instance=ExtResource("3_0ce0i")]
 position = Vector2(51, 179)
 statBases = Dictionary[int, float]({
-0: 10000.0,
+0: 1000.0,
 1: 2.0,
 2: 5.0,
 3: 2.13

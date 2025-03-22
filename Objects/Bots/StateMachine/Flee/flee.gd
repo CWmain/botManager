@@ -20,7 +20,6 @@ func update()->void:
 		goPerpendicular = false
 	
 	# If the bot raycast hits a wall, set the target location to a spot perpendicular to the target bot
-	# TODO: Current formula is not perpendicular but works, may want to revise later
 	if me.wall_detector.is_colliding():
 		oldFoePosition = foe.position
 		var fleeVector: Vector2 = (foe.position + me.position.direction_to(foe.position).rotated(PI/2)*fleeDistance)

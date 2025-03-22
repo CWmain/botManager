@@ -8,26 +8,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HitDetection:monitoring")
+tracks/0/path = NodePath("Sword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sword:rotation")
+tracks/1/path = NodePath("HitDetection:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_nf334"]
@@ -35,26 +35,26 @@ resource_name = "swing"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HitDetection:monitoring")
+tracks/0/path = NodePath("Sword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
+"update": 0,
+"values": [-1.5708, 0.0, 1.5708]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sword:rotation")
+tracks/1/path = NodePath("HitDetection:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-1.5708, 0.0, 1.5708]
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b0ali"]
@@ -84,6 +84,8 @@ libraries = {
 }
 
 [node name="HitDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 monitoring = false
 monitorable = false
 
@@ -94,3 +96,4 @@ shape = SubResource("RectangleShape2D_4raa3")
 [node name="SwordCooldown" type="Timer" parent="."]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]

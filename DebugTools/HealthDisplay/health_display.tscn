@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6xw5ld6n7thg"]
+
+[ext_resource type="Script" uid="uid://cpkmga14k1fr0" path="res://DebugTools/HealthDisplay/health_display.gd" id="1_3tv1a"]
+
+[node name="HealthDisplay" type="Label"]
+offset_right = 91.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Hello World"
+script = ExtResource("1_3tv1a")

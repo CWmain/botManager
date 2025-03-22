@@ -16,6 +16,12 @@ class_name Bot
 ## Dictionary accessed via Enums.MODIFICATION
 var statTotals: Dictionary[Enums.MODIFICATION, float]
 
+var curHealth: int = 5
+# TODO: Refactor to take into account the source of the hit to give immunity
+#		to, so multiple foes can hit but a single foe can not
+var damageImmune: bool = false
+@onready var damage_cooldown: Timer = $Timers/DamageCooldown
+
 @export_group("Equipped", "e_")
 @export var e_head: PackedScene
 @export var e_body: PackedScene
@@ -38,7 +44,7 @@ var modifierTracker: Dictionary[Enums.MODIFICATION, Array]
 @export var foe: Bot
 
 # Attack
-@onready var attack_cooldown: Timer = $AttackCooldown
+@onready var attack_cooldown: Timer = $Timers/AttackCooldown
 var canAttack: bool = true
 
 # Flee
@@ -154,6 +160,12 @@ func doAttack()->void:
 		attack_cooldown.wait_time = statTotals[Enums.MODIFICATION.ATTACK_COOLDOWN]
 		attack_cooldown.start()
 
+func damage_bot(damage: int):
+	if damageImmune:
+		return
+	damageImmune = true
+	damage_cooldown.start()
+	curHealth -= damage
 
 func wander()->void:
 	path_finder.target_position = position + Vector2(randf()*200-100,randf()*200-100)
@@ -163,7 +175,6 @@ func wander()->void:
 func _on_path_finder_navigation_finished() -> void:
 	travelTo = false
 	#wander()
-
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body == foe:
@@ -179,3 +190,6 @@ func _on_attack_complete()->void:
 
 func _on_attack_cooldown_timeout() -> void:
 	canAttack = true
+
+func _on_damage_cooldown_timeout() -> void:
+	damageImmune = false
