@@ -216,4 +216,5 @@ func triggerDeath()->void:
 	bot_explode.emitting = true
 
 func _on_bot_explode_finished() -> void:
-	queue_free()
+	hide()
+	process_mode = Node.PROCESS_MODE_DISABLED
