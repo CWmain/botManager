@@ -4,7 +4,8 @@
 
 [node name="DebugDisplay" type="VBoxContainer"]
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 50.0
+pivot_offset = Vector2(16, 50)
 script = ExtResource("1_plis2")
 
 [node name="BotName" type="Label" parent="."]

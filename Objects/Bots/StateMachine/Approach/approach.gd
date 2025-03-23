@@ -10,13 +10,14 @@ func enter()->void:
 		isConnected = true
 	me.path_finder.target_position = foe.position
 	me.travelTo = true
-	triggerTranisition = false
+	
 	
 func update()->void:
 	me.path_finder.target_position = foe.position
 	me.travelTo = true
 	if triggerTranisition:
 		tranistion.emit(self, attack)
+		triggerTranisition = false
 	
 func goToNextState()->void:
 	triggerTranisition = true

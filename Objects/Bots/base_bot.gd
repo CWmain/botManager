@@ -186,7 +186,6 @@ func _on_path_finder_navigation_finished() -> void:
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body == foe:
-		print("Detected %s" % body.name)
 		withinAttackRange.emit()
 
 
