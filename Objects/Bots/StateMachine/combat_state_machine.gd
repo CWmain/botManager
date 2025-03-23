@@ -8,7 +8,7 @@ extends Node
 var currentState: State:
 	set(value):
 		if (currentState != null):
-			print("Change state %s -> %s" % [value.name, currentState.name])
+			print("%s: Change state %s -> %s" % [get_parent().name, currentState.name, value.name])
 		value.enter()
 		currentState = value
 

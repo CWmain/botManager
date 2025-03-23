@@ -78,14 +78,17 @@ func _process(_delta: float) -> void:
 		camera_2d.make_current()
 
 func _physics_process(delta: float) -> void:
-	var nextPathPosition = path_finder.get_next_path_position()
-	rotation = (nextPathPosition - global_position).angle()+PI/2
-	
 	if travelTo:
-		if (curLegs != null):
-			curLegs.playAnimation()
-		var moveDirection: Vector2 = Vector2(0,-1).rotated(rotation)
-		velocity = moveDirection*statTotals[Enums.MODIFICATION.MOVESPEED]*delta
+		var nextPathPosition = path_finder.get_next_path_position()
+		var idealRotation: float = (nextPathPosition - global_position).angle()+PI/2
+		rotation = rotate_toward(rotation, idealRotation, statTotals[Enums.MODIFICATION.ROTATIONSPEED]*delta)		
+		if cmpFloats(rotation, idealRotation):
+			if (curLegs != null):
+				curLegs.playAnimation()
+			var moveDirection: Vector2 = Vector2(0,-1).rotated(rotation)
+			velocity = moveDirection*statTotals[Enums.MODIFICATION.MOVESPEED]*delta
+		else:
+			velocity = Vector2.ZERO
 	else:
 		if (curLegs != null):
 			curLegs.endAnimation()
@@ -110,6 +113,8 @@ func print_current_equipment():
 
 ## Called to recalculate totalStats (i.e moveSpeed)
 func updateStatTotals():
+	#TODO: Refactor logic to handle equiping null while having a curEquipment
+	#		Already temp fixed for legs
 	statTotals = statBases.duplicate()
 	if e_head != null:
 		if curHead != null:
@@ -127,7 +132,9 @@ func updateStatTotals():
 		curBody.position = Vector2(0,0)
 		add_child(curBody)
 		calculateStatsFromEquipment(curBody)
-		
+	
+	if e_legs == null and curLegs != null:
+		curLegs.queue_free()
 	if e_legs != null:
 		if curLegs != null:
 			curLegs.queue_free()
@@ -193,3 +200,9 @@ func _on_attack_cooldown_timeout() -> void:
 
 func _on_damage_cooldown_timeout() -> void:
 	damageImmune = false
+
+func cmpFloats(a: float, b: float) -> float:
+	var epsilon: float = 0.0001
+	if a >= b-epsilon and a <= b+epsilon:
+		return true
+	return false 

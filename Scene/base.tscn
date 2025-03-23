@@ -68,7 +68,7 @@ position = Vector2(132, 188)
 c_original = ExtResource("3_grk85")
 c_reColor = ExtResource("4_vtgk1")
 statBases = Dictionary[int, float]({
-0: 1000.0,
+0: 2000.0,
 1: 2.0,
 2: 5.0,
 3: 1.0
@@ -93,6 +93,7 @@ statBases = Dictionary[int, float]({
 3: 2.13
 })
 e_head = ExtResource("5_grk85")
+e_legs = null
 foe = NodePath("../Base_Bot")
 
 [node name="MiniView" parent="." node_paths=PackedStringArray("toTrack") instance=ExtResource("3_vtgk1")]
