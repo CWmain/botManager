@@ -50,6 +50,9 @@ var canAttack: bool = true
 # Flee
 @onready var wall_detector: RayCast2D = $WallDetector
 
+# Death
+@onready var bot_explode: CPUParticles2D = $Bot_Explode
+
 
 signal attackComplete
 signal withinAttackRange
@@ -69,6 +72,9 @@ func _ready() -> void:
 	travelTo = true
 
 func _process(_delta: float) -> void:
+	if curHealth == 0:
+		triggerDeath()
+		
 	if Input.is_action_just_pressed("GoTo") and foe == null:
 		var mousePos: Vector2 = get_viewport().get_mouse_position() if get_viewport().get_camera_2d()==null else get_viewport().get_camera_2d().get_global_mouse_position()
 		path_finder.target_position = mousePos
@@ -205,3 +211,9 @@ func _on_attack_cooldown_timeout() -> void:
 
 func _on_damage_cooldown_timeout() -> void:
 	damageImmune = false
+
+func triggerDeath()->void:
+	bot_explode.emitting = true
+
+func _on_bot_explode_finished() -> void:
+	queue_free()

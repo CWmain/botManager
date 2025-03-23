@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://i84ma6rgf6kk"]
+[gd_scene load_steps=15 format=3 uid="uid://i84ma6rgf6kk"]
 
 [ext_resource type="Texture2D" uid="uid://cka5rlq7af4dm" path="res://Objects/Bots/Bot3SlotBase.png" id="1_jaqpk"]
 [ext_resource type="Shader" uid="uid://cn202joa1mqr5" path="res://Objects/Bots/reColor.gdshader" id="1_qmvjg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dstoqrci8ck5o" path="res://Objects/Equipment/BackPack/back_pack.tscn" id="2_6xkl7"]
 [ext_resource type="PackedScene" uid="uid://brwbgql70uqor" path="res://Objects/Equipment/Booster/booster.tscn" id="4_hnho6"]
 [ext_resource type="PackedScene" uid="uid://bnbq1kcy4upc1" path="res://Objects/Bots/StateMachine/combat_state_machine.tscn" id="6_6qp8m"]
+[ext_resource type="PackedScene" uid="uid://chs6vtp2u557e" path="res://Particles/bot_explode.tscn" id="6_q7wl2"]
 [ext_resource type="PackedScene" uid="uid://do17gtia3q5tu" path="res://Objects/Bots/StateMachine/Approach/approach.tscn" id="7_vgcp1"]
 [ext_resource type="PackedScene" uid="uid://dtrvy48u1aqib" path="res://Objects/Bots/StateMachine/Idle/idle.tscn" id="8_x3iqn"]
 [ext_resource type="PackedScene" uid="uid://dtw660v1ah1g2" path="res://Objects/Bots/StateMachine/Attack/attack.tscn" id="9_vgcp1"]
@@ -46,6 +47,8 @@ rotation_smoothing_speed = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ukfyj")
+
+[node name="Bot_Explode" parent="." instance=ExtResource("6_q7wl2")]
 
 [node name="PathFinder" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
@@ -89,6 +92,7 @@ wait_time = 0.5
 [node name="WallDetector" type="RayCast2D" parent="."]
 target_position = Vector2(0, -40)
 
+[connection signal="finished" from="Bot_Explode" to="." method="_on_bot_explode_finished"]
 [connection signal="navigation_finished" from="PathFinder" to="." method="_on_path_finder_navigation_finished"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
