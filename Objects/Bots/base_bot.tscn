@@ -18,6 +18,7 @@ shader = ExtResource("1_qmvjg")
 height = 36.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qp8m"]
+size = Vector2(20, 13)
 
 [node name="Base_Bot" type="CharacterBody2D"]
 collision_layer = 3
@@ -74,7 +75,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-position = Vector2(0, -24)
+position = Vector2(0, -20.5)
 shape = SubResource("RectangleShape2D_6qp8m")
 
 [node name="Timers" type="Node" parent="."]
