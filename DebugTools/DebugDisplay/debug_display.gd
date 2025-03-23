@@ -16,4 +16,4 @@ func _process(delta: float) -> void:
 	if (timer > 0.1):
 		timer -= 0.1
 		health.text = str(toDisplay.curHealth)
-		position = toDisplay.position+Vector2(0,-48)
+		position = toDisplay.position+Vector2(0,-16-size.y)
