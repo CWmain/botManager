@@ -78,11 +78,11 @@ func _process(_delta: float) -> void:
 		camera_2d.make_current()
 
 func _physics_process(delta: float) -> void:
+	var nextPathPosition = path_finder.get_next_path_position()
+	var idealRotation: float = (nextPathPosition - global_position).angle()+PI/2
+	rotation = rotate_toward(rotation, idealRotation, statTotals[Enums.MODIFICATION.ROTATIONSPEED]*delta)		
 	if travelTo:
-		var nextPathPosition = path_finder.get_next_path_position()
-		var idealRotation: float = (nextPathPosition - global_position).angle()+PI/2
-		rotation = rotate_toward(rotation, idealRotation, statTotals[Enums.MODIFICATION.ROTATIONSPEED]*delta)		
-		if cmpFloats(rotation, idealRotation):
+		if Func.cmpFloats(rotation, idealRotation):
 			if (curLegs != null):
 				curLegs.playAnimation()
 			var moveDirection: Vector2 = Vector2(0,-1).rotated(rotation)
@@ -200,9 +200,3 @@ func _on_attack_cooldown_timeout() -> void:
 
 func _on_damage_cooldown_timeout() -> void:
 	damageImmune = false
-
-func cmpFloats(a: float, b: float) -> float:
-	var epsilon: float = 0.0001
-	if a >= b-epsilon and a <= b+epsilon:
-		return true
-	return false 
