@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8ol2anq3wcrn"]
+
+[ext_resource type="Script" uid="uid://ok5fl7j6lxl6" path="res://UI/topBarUI/top_bar_ui.gd" id="1_pne8w"]
+
+[node name="TopBarUI" type="HBoxContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("1_pne8w")
+
+[node name="HomeButton" type="Button" parent="."]
+layout_mode = 2
+text = "Home"
+
+[node name="DojoButton" type="Button" parent="."]
+layout_mode = 2
+text = "Dojo
+"
+
+[connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="DojoButton" to="." method="_on_dojo_button_pressed"]
