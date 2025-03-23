@@ -79,10 +79,11 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	var nextPathPosition = path_finder.get_next_path_position()
-	var idealRotation: float = (nextPathPosition - global_position).angle()+PI/2
-	rotation = rotate_toward(rotation, idealRotation, statTotals[Enums.MODIFICATION.ROTATIONSPEED]*delta)		
 	if travelTo:
-		if Func.cmpFloats(rotation, idealRotation):
+		var idealRotation: float = (nextPathPosition - global_position).angle()+PI/2
+		rotation = rotate_toward(rotation, idealRotation, statTotals[Enums.MODIFICATION.ROTATIONSPEED]*delta)		
+
+		if Func.cmpRotations(rotation, idealRotation):
 			if (curLegs != null):
 				curLegs.playAnimation()
 			var moveDirection: Vector2 = Vector2(0,-1).rotated(rotation)
