@@ -53,6 +53,8 @@ var canAttack: bool = true
 # Death
 @onready var bot_explode: CPUParticles2D = $Bot_Explode
 
+# Moving Scenes
+@export var home: SubViewport
 
 signal attackComplete
 signal withinAttackRange
@@ -216,5 +218,4 @@ func triggerDeath()->void:
 	bot_explode.emitting = true
 
 func _on_bot_explode_finished() -> void:
-	hide()
-	process_mode = Node.PROCESS_MODE_DISABLED
+	reparent(home)
