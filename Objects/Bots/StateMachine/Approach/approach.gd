@@ -7,6 +7,7 @@ var isConnected: bool = false
 func enter()->void:
 	if !isConnected:
 		me.withinAttackRange.connect(goToNextState)
+		me.outOffAttackRange.connect(preventNextState)
 		isConnected = true
 	me.path_finder.target_position = foe.position
 	me.travelTo = true
@@ -17,7 +18,9 @@ func update()->void:
 	me.travelTo = true
 	if triggerTranisition:
 		tranistion.emit(self, attack)
-		triggerTranisition = false
 	
 func goToNextState()->void:
 	triggerTranisition = true
+
+func preventNextState()->void:
+	triggerTranisition = false

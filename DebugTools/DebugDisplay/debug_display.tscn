@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://dd6sqseer6hdj" path="res://DebugTools/DebugDisplay/debug_display.gd" id="1_plis2"]
 
 [node name="DebugDisplay" type="VBoxContainer"]
-offset_right = 40.0
-offset_bottom = 50.0
+offset_left = -16.0
+offset_top = -50.0
+offset_right = 24.0
 pivot_offset = Vector2(16, 50)
+alignment = 2
 script = ExtResource("1_plis2")
 
 [node name="BotName" type="Label" parent="."]

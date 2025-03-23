@@ -53,6 +53,7 @@ var canAttack: bool = true
 
 signal attackComplete
 signal withinAttackRange
+signal outOffAttackRange
 
 func _ready() -> void:
 	combat_state_machine.foe = foe
@@ -184,11 +185,15 @@ func _on_path_finder_navigation_finished() -> void:
 	travelTo = false
 	#wander()
 
+#region Attack Range
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body == foe:
 		withinAttackRange.emit()
-
-
+		
+func _on_attack_range_body_exited(body: Node2D) -> void:
+	if body == foe:
+		outOffAttackRange.emit()
+#endregion
 func _head_reset() -> void:
 	canAttack = true
 

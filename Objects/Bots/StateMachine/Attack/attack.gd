@@ -11,6 +11,8 @@ func enter()->void:
 func update()->void:
 	me.travelTo = false
 	doAttack()
+	var idealRotation: float = (foe.position - me.position).angle()+PI/2
+	me.rotation = rotate_toward(me.rotation, idealRotation, me.statTotals[Enums.MODIFICATION.ROTATIONSPEED])
 
 func doAttack()->void:
 	me.doAttack()
