@@ -74,7 +74,8 @@ statBases = Dictionary[int, float]({
 0: 2000.0,
 1: 2.0,
 2: 5.0,
-3: 1.0
+3: 1.0,
+4: 10.0
 })
 e_head = ExtResource("5_grk85")
 foe = NodePath("../Base_Bot2")
@@ -92,7 +93,8 @@ statBases = Dictionary[int, float]({
 0: 1000.0,
 1: 2.0,
 2: 5.0,
-3: 2.13
+3: 2.13,
+4: 5.0
 })
 e_head = ExtResource("5_grk85")
 e_legs = null

@@ -16,7 +16,7 @@ class_name Bot
 ## Dictionary accessed via Enums.MODIFICATION
 var statTotals: Dictionary[Enums.MODIFICATION, float]
 
-var curHealth: int = 5
+var curHealth: int = 1
 # TODO: Refactor to take into account the source of the hit to give immunity
 #		to, so multiple foes can hit but a single foe can not
 var damageImmune: bool = false
@@ -72,6 +72,7 @@ func _ready() -> void:
 	print_modifer_tracker()
 	path_finder.target_position = Vector2(150,100)
 	travelTo = true
+	curHealth = int(statTotals[Enums.MODIFICATION.MAX_HEALTH])
 
 func _process(_delta: float) -> void:
 	if curHealth == 0:

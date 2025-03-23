@@ -29,7 +29,8 @@ statBases = Dictionary[int, float]({
 0: 1000.0,
 1: 2.0,
 2: 5.0,
-3: 100.0
+3: 100.0,
+4: 5.0
 })
 e_body = ExtResource("2_6xkl7")
 e_legs = ExtResource("4_hnho6")
