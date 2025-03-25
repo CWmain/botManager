@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://i84ma6rgf6kk"]
+[gd_scene load_steps=16 format=3 uid="uid://i84ma6rgf6kk"]
 
 [ext_resource type="Texture2D" uid="uid://cka5rlq7af4dm" path="res://Objects/Bots/Bot3SlotBase.png" id="1_jaqpk"]
 [ext_resource type="Shader" uid="uid://cn202joa1mqr5" path="res://Objects/Bots/reColor.gdshader" id="1_qmvjg"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dtrvy48u1aqib" path="res://Objects/Bots/StateMachine/Idle/idle.tscn" id="8_x3iqn"]
 [ext_resource type="PackedScene" uid="uid://dtw660v1ah1g2" path="res://Objects/Bots/StateMachine/Attack/attack.tscn" id="9_vgcp1"]
 [ext_resource type="PackedScene" uid="uid://bchd576j8hqax" path="res://Objects/Bots/StateMachine/Flee/flee.tscn" id="10_x3iqn"]
+[ext_resource type="PackedScene" uid="uid://qeyw0otfyhul" path="res://Objects/Bots/StateMachine/Wonder/wonder.tscn" id="12_jonc4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6xkl7"]
 shader = ExtResource("1_qmvjg")
@@ -63,8 +64,9 @@ initialState = NodePath("Idle")
 approach = NodePath("../Approach")
 flee = NodePath("../Flee")
 
-[node name="Approach" parent="CombatStateMachine" node_paths=PackedStringArray("attack") instance=ExtResource("7_vgcp1")]
+[node name="Approach" parent="CombatStateMachine" node_paths=PackedStringArray("attack", "wonder") instance=ExtResource("7_vgcp1")]
 attack = NodePath("../Attack")
+wonder = NodePath("../Wonder")
 
 [node name="Attack" parent="CombatStateMachine" node_paths=PackedStringArray("idle") instance=ExtResource("9_vgcp1")]
 idle = NodePath("../Idle")
@@ -72,6 +74,8 @@ idle = NodePath("../Idle")
 [node name="Flee" parent="CombatStateMachine" node_paths=PackedStringArray("approach") instance=ExtResource("10_x3iqn")]
 approach = NodePath("../Approach")
 fleeDistance = 100.0
+
+[node name="Wonder" parent="CombatStateMachine" instance=ExtResource("12_jonc4")]
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 0

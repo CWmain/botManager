@@ -9,7 +9,8 @@ EID = "BackPack"
 location = 1
 statModifers = Dictionary[int, float]({
 0: -5.0,
-2: 10.0
+2: 10.0,
+4: 2.0
 })
 metadata/_custom_type_script = "uid://n0snr621jcxe"
 

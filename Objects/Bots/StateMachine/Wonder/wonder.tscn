@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://qeyw0otfyhul"]
+
+[ext_resource type="Script" uid="uid://dy00ivabjp2qw" path="res://Objects/Bots/StateMachine/Wonder/wonder.gd" id="1_gus57"]
+
+[node name="Wonder" type="Node"]
+script = ExtResource("1_gus57")
+metadata/_custom_type_script = "uid://c1jpua0p86g30"
+
+[node name="updateTargetPositionDelay" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="updateTargetPositionDelay" to="." method="_on_update_target_position_delay_timeout"]
