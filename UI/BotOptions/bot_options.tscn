@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://5mbox7nr8h8r" path="res://UI/BotOptions/bot_options.gd" id="1_0jfew"]
 
 [node name="BotOptions" type="PanelContainer"]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 128.0
+offset_bottom = 93.0
 script = ExtResource("1_0jfew")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -15,10 +14,12 @@ layout_mode = 2
 layout_mode = 2
 text = "BOT NAME HERE"
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Heal" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Button 1"
+text = "Heal to Full"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Button 2"
+
+[connection signal="pressed" from="VBoxContainer/Heal" to="." method="_on_heal_pressed"]

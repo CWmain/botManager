@@ -56,10 +56,6 @@ var canAttack: bool = true
 # Moving Scenes
 @export var home: SubViewport
 
-# Bot Options
-@onready var bot_options: PanelContainer = $BotOptions
-
-
 signal attackComplete
 signal withinAttackRange
 signal outOffAttackRange
@@ -227,10 +223,6 @@ func triggerDeath()->void:
 func _on_bot_explode_finished() -> void:
 	reparent(home)
 
-
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("Select"):
 		showBotOptions.emit(self)
-
-func _on_mouse_entered() -> void:
-	printerr("Mouse Entered")

@@ -149,6 +149,7 @@ cameraZoomScale = 2.0
 layout_mode = 1
 
 [node name="BotOptions" parent="." node_paths=PackedStringArray("botList") instance=ExtResource("10_4pfap")]
+visible = false
 layout_mode = 0
 botList = [NodePath("../Dojo/DojoSV/Base_Bot"), NodePath("../Dojo/DojoSV/Base_Bot2")]
 

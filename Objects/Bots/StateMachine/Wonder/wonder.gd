@@ -11,15 +11,17 @@ func enter()->void:
 	
 func update()->void:
 	if me.wall_detector.is_colliding():
-		print("From wall collide")
-		me.path_finder.target_position = Vector2(100+randf()*200,100+randf()*200)
+		me.path_finder.target_position = randomLocation()
 		me.travelTo = true
 		update_target_position_delay.stop()
 	if updateTargetPosition:
 
-		me.path_finder.target_position = Vector2(100+randf()*200,100+randf()*200)
+		me.path_finder.target_position = randomLocation()
 		me.travelTo = true
 		updateTargetPosition = false
+
+func randomLocation()->Vector2:
+	return Vector2(100+randf()*200,100+randf()*200)
 
 func toggleUpdateTargetPosition():
 	if update_target_position_delay.is_stopped():
