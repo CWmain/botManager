@@ -18,8 +18,16 @@ text = "BOT NAME HERE"
 layout_mode = 2
 text = "Heal to Full"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="GoHome" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Button 2"
+text = "Go Home
+"
+
+[node name="GoDojo" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Go Dojo
+"
 
 [connection signal="pressed" from="VBoxContainer/Heal" to="." method="_on_heal_pressed"]
+[connection signal="pressed" from="VBoxContainer/GoHome" to="." method="_on_go_home_pressed"]
+[connection signal="pressed" from="VBoxContainer/GoDojo" to="." method="_on_go_dojo_pressed"]

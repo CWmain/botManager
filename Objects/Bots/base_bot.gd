@@ -226,3 +226,7 @@ func _on_bot_explode_finished() -> void:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("Select"):
 		showBotOptions.emit(self)
+
+## Function to use to reparent base_bot
+func goToSubviewport(toGo: SubViewport):
+	reparent(toGo)

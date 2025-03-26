@@ -1,6 +1,9 @@
 extends PanelContainer
 
 @export var botList: Array[Bot]
+@export var home: SubViewport
+@export var dojo: SubViewport
+
 @onready var title: Label = $VBoxContainer/Title
 
 var displayedBot: Bot = null
@@ -11,9 +14,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Select") and visible:
-		hide()
-		# remove the displayedBot when menu is closed
-		displayedBot = null
+		_hideBotOptions()
 
 func _revealBotOptions(bot: Bot):
 	displayedBot = bot
@@ -33,8 +34,22 @@ func _revealBotOptions(bot: Bot):
 	
 	show()
 
+func _hideBotOptions()->void:
+	hide()
+	# remove the displayedBot when menu is closed
+	displayedBot = null
 
 func _on_heal_pressed() -> void:
 	assert(displayedBot != null, "Trying to use menu without a displayed bot")
 	# Looks up the max health and sets current health to that value
 	displayedBot.curHealth = int(displayedBot.statTotals[Enums.MODIFICATION.MAX_HEALTH])
+
+
+func _on_go_home_pressed() -> void:
+	displayedBot.goToSubviewport(home)
+	_hideBotOptions()
+
+
+func _on_go_dojo_pressed() -> void:
+	displayedBot.goToSubviewport(dojo)
+	_hideBotOptions()

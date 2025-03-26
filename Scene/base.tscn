@@ -97,7 +97,7 @@ statBases = Dictionary[int, float]({
 1: 2.0,
 2: 5.0,
 3: 2.13,
-4: 0.0
+4: 5.0
 })
 e_head = ExtResource("5_grk85")
 e_legs = null
@@ -148,10 +148,12 @@ cameraZoomScale = 2.0
 [node name="TopBarUI" parent="." instance=ExtResource("9_4pfap")]
 layout_mode = 1
 
-[node name="BotOptions" parent="." node_paths=PackedStringArray("botList") instance=ExtResource("10_4pfap")]
+[node name="BotOptions" parent="." node_paths=PackedStringArray("botList", "home", "dojo") instance=ExtResource("10_4pfap")]
 visible = false
 layout_mode = 0
 botList = [NodePath("../Dojo/DojoSV/Base_Bot"), NodePath("../Dojo/DojoSV/Base_Bot2")]
+home = NodePath("../Home/HomeSV")
+dojo = NodePath("../Dojo/DojoSV")
 
 [connection signal="showDojo" from="TopBarUI" to="." method="_on_top_bar_ui_show_dojo"]
 [connection signal="showHome" from="TopBarUI" to="." method="_on_top_bar_ui_show_home"]
