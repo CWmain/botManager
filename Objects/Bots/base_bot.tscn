@@ -97,22 +97,6 @@ wait_time = 0.5
 [node name="WallDetector" type="RayCast2D" parent="."]
 target_position = Vector2(0, -40)
 
-[node name="BotOptions" type="PanelContainer" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BotOptions"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="BotOptions/VBoxContainer"]
-layout_mode = 2
-text = "Button 1"
-
-[node name="Button2" type="Button" parent="BotOptions/VBoxContainer"]
-layout_mode = 2
-text = "Button 2"
-
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="finished" from="Bot_Explode" to="." method="_on_bot_explode_finished"]
 [connection signal="navigation_finished" from="PathFinder" to="." method="_on_path_finder_navigation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://6nfck3esvvfr"]
+[gd_scene load_steps=15 format=4 uid="uid://6nfck3esvvfr"]
 
 [ext_resource type="Script" uid="uid://1355dubclinj" path="res://Scene/base.gd" id="1_psmx6"]
 [ext_resource type="PackedScene" uid="uid://i84ma6rgf6kk" path="res://Objects/Bots/base_bot.tscn" id="3_0ce0i"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bp7lo1ujwwol3" path="res://Objects/Equipment/Sword/sword.tscn" id="5_grk85"]
 [ext_resource type="PackedScene" uid="uid://c3bxaxcmuxjfr" path="res://DebugTools/DebugDisplay/debug_display.tscn" id="6_p35hx"]
 [ext_resource type="PackedScene" uid="uid://c8ol2anq3wcrn" path="res://UI/topBarUI/top_bar_ui.tscn" id="9_4pfap"]
+[ext_resource type="PackedScene" uid="uid://hf35bwne2gr8" path="res://UI/BotOptions/bot_options.tscn" id="10_4pfap"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vtgk1"]
 
@@ -146,6 +147,10 @@ cameraZoomScale = 2.0
 
 [node name="TopBarUI" parent="." instance=ExtResource("9_4pfap")]
 layout_mode = 1
+
+[node name="BotOptions" parent="." node_paths=PackedStringArray("botList") instance=ExtResource("10_4pfap")]
+layout_mode = 0
+botList = [NodePath("../Dojo/DojoSV/Base_Bot"), NodePath("../Dojo/DojoSV/Base_Bot2")]
 
 [connection signal="showDojo" from="TopBarUI" to="." method="_on_top_bar_ui_show_dojo"]
 [connection signal="showHome" from="TopBarUI" to="." method="_on_top_bar_ui_show_home"]

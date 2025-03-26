@@ -64,6 +64,8 @@ signal attackComplete
 signal withinAttackRange
 signal outOffAttackRange
 
+signal showBotOptions(bot: Bot)
+
 func _ready() -> void:
 	combat_state_machine.foe = foe
 	# Have to duplicate the material locally otherwise an update in
@@ -228,10 +230,7 @@ func _on_bot_explode_finished() -> void:
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("Select"):
-		if bot_options.visible:
-			bot_options.hide()
-		else:
-			bot_options.show()
+		showBotOptions.emit(self)
 
 func _on_mouse_entered() -> void:
 	printerr("Mouse Entered")
