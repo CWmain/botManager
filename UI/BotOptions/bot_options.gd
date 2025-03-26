@@ -12,6 +12,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Select") and visible:
 		hide()
+		# remove the displayedBot when menu is closed
 		displayedBot = null
 
 func _revealBotOptions(bot: Bot):
@@ -19,12 +20,15 @@ func _revealBotOptions(bot: Bot):
 	var mousePosition: Vector2 = get_viewport().get_mouse_position()
 	var windowSize: Vector2 = DisplayServer.window_get_size()
 	
-	# Adjusts the position of the opened window to allows be within the screen
+	# Adjusts the position of the opened window to 
+	# allows be within the visable screen
 	position = mousePosition
 	if mousePosition.x > windowSize.x / 2.0:
 		position.x -= size.x
 	if mousePosition.y > windowSize.y / 2:
 		position.y -= size.y
+	
+	# Display unique bot information
 	title.text = bot.name
 	
 	show()
