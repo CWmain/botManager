@@ -223,6 +223,6 @@ func triggerDeath()->void:
 func _on_bot_explode_finished() -> void:
 	reparent(home)
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("Select"):
 		showBotOptions.emit(self)

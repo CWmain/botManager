@@ -12,16 +12,25 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Select") and visible:
 		hide()
-		#displayedBot = null
+		displayedBot = null
 
 func _revealBotOptions(bot: Bot):
 	displayedBot = bot
-	position = get_viewport().get_mouse_position()
+	var mousePosition: Vector2 = get_viewport().get_mouse_position()
+	var windowSize: Vector2 = DisplayServer.window_get_size()
+	
+	# Adjusts the position of the opened window to allows be within the screen
+	position = mousePosition
+	if mousePosition.x > windowSize.x / 2.0:
+		position.x -= size.x
+	if mousePosition.y > windowSize.y / 2:
+		position.y -= size.y
 	title.text = bot.name
-	print(bot)
+	
 	show()
 
 
 func _on_heal_pressed() -> void:
 	assert(displayedBot != null, "Trying to use menu without a displayed bot")
-	displayedBot.curHealth = displayedBot.statTotals[Enums.MODIFICATION.MAX_HEALTH]
+	# Looks up the max health and sets current health to that value
+	displayedBot.curHealth = int(displayedBot.statTotals[Enums.MODIFICATION.MAX_HEALTH])
