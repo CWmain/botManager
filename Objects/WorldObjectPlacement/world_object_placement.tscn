@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xc8fntrcbx0r"]
+
+[ext_resource type="Script" uid="uid://dkwqt6sr3b2m1" path="res://Objects/WorldObjectPlacement/world_object_placement.gd" id="1_wqr8q"]
+
+[node name="WorldObjectPlacement" type="Node"]
+script = ExtResource("1_wqr8q")
