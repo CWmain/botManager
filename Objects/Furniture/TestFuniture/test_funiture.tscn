@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dskb8qqxwuslt" path="res://Objects/Furniture/TestFuniture/TestFuniture.png" id="1_3fl2s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gy3vo"]
+size = Vector2(34, 34)
 
 [node name="TestFuniture" type="Node2D"]
 script = ExtResource("1_2lh87")
