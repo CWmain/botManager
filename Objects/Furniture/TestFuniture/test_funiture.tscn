@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://j6th6kh3pld4"]
+[gd_scene load_steps=4 format=3 uid="uid://j6th6kh3pld4"]
 
+[ext_resource type="Script" uid="uid://crvy0fsmiu45f" path="res://Objects/Furniture/TestFuniture/test_funiture.gd" id="1_2lh87"]
 [ext_resource type="Texture2D" uid="uid://dskb8qqxwuslt" path="res://Objects/Furniture/TestFuniture/TestFuniture.png" id="1_3fl2s"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy3vo"]
+
 [node name="TestFuniture" type="Node2D"]
+script = ExtResource("1_2lh87")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3fl2s")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gy3vo")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
