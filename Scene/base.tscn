@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bp7lo1ujwwol3" path="res://Objects/Equipment/Sword/sword.tscn" id="5_grk85"]
 [ext_resource type="PackedScene" uid="uid://c3bxaxcmuxjfr" path="res://DebugTools/DebugDisplay/debug_display.tscn" id="6_p35hx"]
 [ext_resource type="PackedScene" uid="uid://c8ol2anq3wcrn" path="res://UI/topBarUI/top_bar_ui.tscn" id="9_4pfap"]
-[ext_resource type="PackedScene" uid="uid://63fkmktemt7h" path="res://Objects/worldBot/worldBot.tscn" id="10_2blmx"]
+[ext_resource type="PackedScene" uid="uid://63fkmktemt7h" path="res://Objects/compoundBot/compoundBot.tscn" id="10_2blmx"]
 [ext_resource type="PackedScene" uid="uid://hf35bwne2gr8" path="res://UI/BotOptions/bot_options.tscn" id="10_4pfap"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vtgk1"]

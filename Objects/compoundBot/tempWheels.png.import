@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjq4l58oqw0yg"
-path="res://.godot/imported/tempChassis.png-e9127d2d5f3fa8c8396705d99fadca55.ctex"
+uid="uid://bvqco634p0i02"
+path="res://.godot/imported/tempWheels.png-9e46ad5ac1acc637facf7820d7d6b3b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects/worldBot/tempChassis.png"
-dest_files=["res://.godot/imported/tempChassis.png-e9127d2d5f3fa8c8396705d99fadca55.ctex"]
+source_file="res://Objects/compoundBot/tempWheels.png"
+dest_files=["res://.godot/imported/tempWheels.png-9e46ad5ac1acc637facf7820d7d6b3b3.ctex"]
 
 [params]
 

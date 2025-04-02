@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bmef14su6trg2"]
 
-[ext_resource type="Texture2D" uid="uid://bvqco634p0i02" path="res://Objects/worldBot/tempWheels.png" id="1_rprid"]
+[ext_resource type="Texture2D" uid="uid://bvqco634p0i02" path="res://Objects/compoundBot/tempWheels.png" id="1_rprid"]
 
 [node name="Wheels" type="Node2D"]
 

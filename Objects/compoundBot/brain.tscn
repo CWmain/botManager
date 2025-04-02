@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1v70ktdx5u43"]
 
-[ext_resource type="Texture2D" uid="uid://fsi5hys4bjm0" path="res://Objects/worldBot/tempBrain.png" id="1_02vy0"]
+[ext_resource type="Texture2D" uid="uid://fsi5hys4bjm0" path="res://Objects/compoundBot/tempBrain.png" id="1_02vy0"]
 
 [node name="Brain" type="Node2D"]
 

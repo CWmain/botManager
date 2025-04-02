@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd3vishjgdlgv"
-path="res://.godot/imported/NewBot.png-d3da7a38f749ddc2ec9492f1eb7a141f.ctex"
+uid="uid://fsi5hys4bjm0"
+path="res://.godot/imported/tempBrain.png-58c6439dc1351265163c3d00f6cf7fc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects/worldBot/NewBot.png"
-dest_files=["res://.godot/imported/NewBot.png-d3da7a38f749ddc2ec9492f1eb7a141f.ctex"]
+source_file="res://Objects/compoundBot/tempBrain.png"
+dest_files=["res://.godot/imported/tempBrain.png-58c6439dc1351265163c3d00f6cf7fc6.ctex"]
 
 [params]
 

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name worldBot
+class_name compoundBot
 
 enum STATS{
 	MOVESPEED,
