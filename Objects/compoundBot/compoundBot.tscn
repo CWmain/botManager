@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://63fkmktemt7h"]
 
 [ext_resource type="Script" uid="uid://dg47sygdiip20" path="res://Objects/compoundBot/compoundBot.gd" id="1_fde1t"]
-[ext_resource type="PackedScene" uid="uid://bmef14su6trg2" path="res://Objects/compoundBot/wheels.tscn" id="2_pcpm3"]
+[ext_resource type="PackedScene" uid="uid://8l6pvl8phbu1" path="res://Objects/compound/wheels/tempWheel.tscn" id="2_fde1t"]
 [ext_resource type="PackedScene" uid="uid://dpce0gvtvypx0" path="res://Objects/compoundBot/chassis.tscn" id="3_xfnlb"]
 [ext_resource type="PackedScene" uid="uid://b0wbhstvvj5oh" path="res://Objects/compoundBot/sword.tscn" id="4_ptmv8"]
 [ext_resource type="PackedScene" uid="uid://c1v70ktdx5u43" path="res://Objects/compoundBot/brain.tscn" id="5_ogyth"]
@@ -11,7 +11,7 @@ size = Vector2(32, 32)
 
 [node name="compoundBot" type="CharacterBody2D"]
 script = ExtResource("1_fde1t")
-wheels = ExtResource("2_pcpm3")
+wheels = ExtResource("2_fde1t")
 chassis = ExtResource("3_xfnlb")
 weapon = ExtResource("4_ptmv8")
 brain = ExtResource("5_ogyth")
