@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://8l6pvl8phbu1"]
+[gd_scene load_steps=3 format=3 uid="uid://8l6pvl8phbu1"]
 
 [ext_resource type="Script" uid="uid://cn7ihg8i5qbb" path="res://Objects/compound/wheels/wheels_base.gd" id="1_6vog0"]
+[ext_resource type="Texture2D" uid="uid://cjq4l58oqw0yg" path="res://Objects/compoundBot/tempChassis.png" id="2_6vog0"]
 
 [node name="WheelBase" type="Node2D"]
 script = ExtResource("1_6vog0")
 statChange = Dictionary[int, float]({
 4: 15.0
 })
+EID = "tempWheel"
 metadata/_custom_type_script = "uid://cn7ihg8i5qbb"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6vog0")
