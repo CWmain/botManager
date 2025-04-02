@@ -31,14 +31,14 @@ func _ready() -> void:
 	add_child(brain.instantiate())
 
 ## Calculate the total stats and apply their passive effect onto totalStats
-func calculateStatsFromEquipment(equipment: Equipment):
-	var statsChange: Dictionary[Enums.MODIFICATION, float] = equipment.statModifers
+func calculateStatsFromEquipment(equipment: CompoundBase):
+	var statsChange: Dictionary[STATS, float] = equipment.statChange
 	for change in statsChange:
 		# Applies change to total stats
 		if statsTotal.has(change):
 			statsTotal[change] += statsChange[change]
 		else:
-			printerr("Enum %s from %s not in StatBases" % [Enums.MODIFICATION.find_key(change), equipment.EID])
+			printerr("Enum %s from %s not in StatBases" % [STATS.find_key(change), equipment.EID])
 		
 		# Records the equipment and the change caused for stat breakdown
 		if modifierTracker.has(change):

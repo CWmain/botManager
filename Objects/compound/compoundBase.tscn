@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd2jdixnd624b"]
+
+[ext_resource type="Script" uid="uid://dj7rgtsylfhof" path="res://Objects/compound/compound_base.gd" id="1_a4u1c"]
+
+[node name="CompoundBase" type="Node2D"]
+script = ExtResource("1_a4u1c")
