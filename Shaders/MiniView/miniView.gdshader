@@ -9,10 +9,10 @@ void fragment() {
 	float xY = resolution.x/resolution.y;
 	vec2 zoom_uv = (UV * vec2(zoom,xY*zoom)+(toTrack/resolution)-vec2(zoom/2.0, xY*zoom/2.0));
 	vec4 screenPixel = texture(screen_texture, zoom_uv);
-	
+
 	// If zoom takes you out of the texture display nothing
 	if (zoom_uv.x <= 0.0 || zoom_uv.x >= 1.0 || zoom_uv.y <= 0.0 || zoom_uv.y >= 1.0){
-		COLOR = vec4(0.0);	
+		COLOR = vec4(0.0);
 	}
 	else{
 		COLOR = screenPixel;

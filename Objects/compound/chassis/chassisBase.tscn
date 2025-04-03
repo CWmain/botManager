@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4ctb1ijm2xk3"]
+
+[ext_resource type="Script" uid="uid://dx3fq62we64mj" path="res://Objects/compound/chassis/chassis_base.gd" id="1_76ya0"]
+
+[node name="ChassisBase" type="Node2D"]
+script = ExtResource("1_76ya0")
+metadata/_custom_type_script = "uid://dj7rgtsylfhof"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

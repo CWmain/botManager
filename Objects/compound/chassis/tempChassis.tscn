@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ijdxmc3cy4r0"]
+
+[ext_resource type="Script" uid="uid://dx3fq62we64mj" path="res://Objects/compound/chassis/chassis_base.gd" id="1_80soa"]
+[ext_resource type="Texture2D" uid="uid://fsi5hys4bjm0" path="res://Objects/compoundBot/tempBrain.png" id="2_ybi7o"]
+
+[node name="ChassisBase" type="Node2D"]
+script = ExtResource("1_80soa")
+s = ExtResource("2_ybi7o")
+metadata/_custom_type_script = "uid://dx3fq62we64mj"
