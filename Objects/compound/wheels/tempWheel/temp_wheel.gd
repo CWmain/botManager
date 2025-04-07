@@ -9,5 +9,10 @@ func _ready() -> void:
 	else:
 		print("It does not")
 		
-func dash():
+func dash() -> void:
+	update_configuration_warnings()
 	print("Implemented dash")
+	
+func _get_configuration_warnings():
+	var warnings = super()
+	return warnings

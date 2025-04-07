@@ -2,9 +2,9 @@
 extends CompoundBase
 class_name WheelBase
 
-func dash() -> bool:
+func dash() -> void:
 	update_configuration_warnings()
-	return false
+	
 
 func _get_configuration_warnings():
 	var warnings = super()
