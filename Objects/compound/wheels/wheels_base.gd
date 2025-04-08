@@ -3,10 +3,11 @@ extends CompoundBase
 class_name WheelBase
 
 func dash() -> void:
-	update_configuration_warnings()
+	printerr("unimplemnted Dash")
 	
 
 func _get_configuration_warnings():
 	var warnings = super()
-	warnings.append("Unimplemented dash")
+	if name != "WheelBase":
+		warnings.append("Unimplemented dash")
 	return warnings

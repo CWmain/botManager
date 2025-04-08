@@ -15,4 +15,6 @@ func dash() -> void:
 	
 func _get_configuration_warnings():
 	var warnings = super()
+	if dash == self.dash:
+		warnings.append("Unimplemented dash")
 	return warnings
